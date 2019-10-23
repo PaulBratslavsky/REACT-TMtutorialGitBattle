@@ -9,26 +9,17 @@ import Loading from './Loading';
 
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedLanguage: 'All',
-      repos: {},
-      error: null
-    }
-
-    this.updateLanguage = this.updateLanguage.bind(this);
-    this.isLoading = this.isLoading.bind(this);
-
+  state = {
+    selectedLanguage: 'All',
+    repos: {},
+    error: null
   }
-
 
   componentDidMount() {
     this.updateLanguage(this.state.selectedLanguage);
   }
 
-  updateLanguage(selectedLanguage) {
+  updateLanguage = (selectedLanguage) => {
     this.setState({
       selectedLanguage: selectedLanguage,
       error: null
@@ -56,7 +47,7 @@ class Main extends React.Component {
 
   }
 
-  isLoading() {
+  isLoading = () => {
     const { selectedLanguage, repos, error } = this.state;
     return !repos[selectedLanguage] && error === null;
   }
@@ -99,15 +90,3 @@ ReposGrid.proptype = {
 }
 
 export default Main;
-
-/*
-
- fetchPopularRepos(selectedLanguage)
- .then( (repos) => this.setState({repos, error: null}))
- .catch( () => {
-   console.warn('Error fetching repos', error);
-
-   this.setState({error})
- });
-
- */
